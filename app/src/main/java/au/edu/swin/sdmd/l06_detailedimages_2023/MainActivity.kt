@@ -9,12 +9,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fm = this.supportFragmentManager
+
         val station = Location("Glenferrie Station", "Ada May Plante",
             -37.82154f, 145.03647f)
 
         val vStation = findViewById<TextView>(R.id.station)
         vStation.setOnClickListener {
-
+            val myFragment = DetailFragment.newInstance(station.name, station.author)
+            fm.beginTransaction().replace(R.id.fragment, myFragment).commit()
         }
     }
 
